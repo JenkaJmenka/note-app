@@ -2,6 +2,7 @@ import { SideBar } from "@blocks/SideBar";
 import { Note } from "@contracts/Note";
 import { Main } from "@blocks/Main";
 import "./App.css";
+import { NotesProvider } from "@blocks/SideBar/NotesContext";
 
 const note:Note = { 
   content: "",
@@ -12,17 +13,19 @@ const note:Note = {
 function App() {
   return (
     <div className="App">
-      <SideBar
-        notes={[]}
-        // onAddNote={onAddNote}
-        // onDeleteNote={onDeleteNote}
-        // activeNote={activeNote}
-        // setActiveNote={setActiveNote}
-      />
+      <NotesProvider>
+        <SideBar
+          notes={[]}
+          // onAddNote={onAddNote}
+          // onDeleteNote={onDeleteNote}
+          // activeNote={activeNote}
+          // setActiveNote={setActiveNote}
+        />
       <Main 
         note={note} 
         // onUpdateNote={onUpdateNote} 
-      />
+      />      
+      </NotesProvider>
     </div>
   );
 }
