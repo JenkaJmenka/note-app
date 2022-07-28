@@ -1,5 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],      
+      "@blocks/*": [
+        "blocks/*"
+      ],      
+      "@contracts/*": [
+        "contracts/*"
+      ]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -22,5 +34,5 @@
   },
   "include": [
     "src"
-  ]
+, "craco.config.js", "@types/Note.ts"  ]
 }
