@@ -4,12 +4,15 @@
     "paths": {
       "@components/*": [
         "components/*"
-      ],      
+      ],
       "@blocks/*": [
         "blocks/*"
-      ],      
+      ],
       "@contracts/*": [
         "contracts/*"
+      ],
+      "@store/*": [
+        "store/*"
       ]
     },
     "target": "es5",

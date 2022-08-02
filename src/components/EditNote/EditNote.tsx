@@ -1,7 +1,6 @@
-import { useNotesStore } from "@blocks/SideBar/NotesContext";
-import { Note } from "@contracts/Note";
-import { useObserver } from "mobx-react";
+import { observer } from "mobx-react";
 import React from "react";
+import store from "@store/NotesStore"
 
 type EditNoteProps = {
   id: string;
@@ -9,31 +8,26 @@ type EditNoteProps = {
   content: string;
 }
 
-export const EditNote: React.FC<EditNoteProps> = ({ id, title, content }) => {
-  const [noteTitle, setNoteTitle] = React.useState(title);
-  const [noteContent, setNoteContent] = React.useState(content);
-  const notesStore = useNotesStore();
-  
-  return useObserver(() => 
+export const EditNote: React.FC<EditNoteProps> = observer(({...note}) => {
+  return (
     <div className="app-main-note-edit">    
       <button 
-        onClick={() => notesStore.addNote(noteTitle, noteContent)}>
+        onClick={() => store.addNote()}>
         Save
       </button> 
       <input
         type="text"
-        id={id}
         placeholder="Note Title"
-        defaultValue={noteTitle}
-        onChange={(e) => setNoteTitle(e.target.value)}
+        value={store.newNote.title}
+        onChange={(e) => store.newNote.title = e.target.value}
         autoFocus
       />
       <textarea
         id="body"
         placeholder="Write your note here..."
-        defaultValue={noteContent}
-        onChange={(e) => setNoteContent(e.target.value)}
+        value={store.newNote.content}
+        onChange={(e) => store.newNote.content = e.target.value}
       />
     </div>
   )
-}
+});
